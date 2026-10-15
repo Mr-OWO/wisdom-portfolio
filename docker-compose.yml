@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wisdom_portfolio_web
+    restart: unless-stopped
+    environment:
+      - DATABASE_PATH=/app/data/portfolio.db
+      - SECRET_KEY=${SECRET_KEY:-wisdom-portfolio-cyber-secops-key-2026-production-token}
+      - GITHUB_USERNAME=${GITHUB_USERNAME:-Mr-OWO}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    volumes:
+      - portfolio_data:/app/data
+    networks:
+      - internal_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/public/metadata"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  nginx:
+    image: nginx:alpine
+    container_name: wisdom_portfolio_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - certbot_etc:/etc/letsencrypt:ro
+      - certbot_var:/var/lib/letsencrypt:ro
+    depends_on:
+      - web
+    networks:
+      - internal_network
+
+networks:
+  internal_network:
+    driver: bridge
+
+volumes:
+  portfolio_data:
+  certbot_etc:
+  certbot_var:

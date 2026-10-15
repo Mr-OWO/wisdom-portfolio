@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Admin Portal — Wisdom Ogechi Owabor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <!-- FLOATING CAPSULE NAVIGATION -->
+  <div class="navbar-wrapper">
+    <nav class="navbar-pill">
+      <a href="/" class="nav-brand">
+        <img src="/static/img/wisdom_avatar.jpg" alt="Wisdom Owabor" class="nav-avatar-thumb profile-avatar-img">
+        <div class="nav-brand-text">
+          <span class="nav-brand-name">Wisdom O. Owabor</span>
+          <span class="nav-brand-status">CMS Management</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/projects">Projects & Labs</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/" class="btn btn-outline" style="font-size:0.8rem; padding:0.35rem 0.8rem;">Live Site ↗</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="container">
+    <!-- LOGIN SCREEN -->
+    <div id="admin-login-view" style="max-width:440px; margin:4rem auto; background:var(--bg-card); border:1px solid var(--border-card); border-radius:18px; padding:2.5rem; box-shadow:0 20px 50px rgba(0,0,0,0.7);">
+      <div style="text-align:center; margin-bottom:2rem;">
+        <img src="/static/img/wisdom_avatar.jpg" alt="Wisdom Owabor" style="width:70px; height:70px; border-radius:50%; border:2px solid var(--token-blue); margin-bottom:1rem;" class="profile-avatar-img">
+        <h2 style="font-size:1.6rem; color:#ffffff;">SecOps CMS Portal</h2>
+        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.3rem;">Zero-Trust Administrative Gateway</p>
+      </div>
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label class="form-label">Username:</label>
+          <input type="text" id="admin-u" class="form-control" value="wisdom_admin" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password:</label>
+          <input type="password" id="admin-p" class="form-control" value="SecOps!Admin2026#" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">Authenticate & Enter 🔒</button>
+        <div id="admin-login-error" style="color:var(--token-pink); font-size:0.85rem; margin-top:1rem; text-align:center;"></div>
+      </form>
+    </div>
+
+    <!-- DASHBOARD VIEW -->
+    <div id="admin-dashboard-view" style="display:none; padding-bottom:5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid var(--border-subtle); margin-bottom:2rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <span style="font-family:var(--font-mono); font-size:0.8rem; color:var(--token-green);">● ACTIVE SECURE SESSION</span>
+          <h2 style="font-size:1.85rem; color:#ffffff;">Management Console</h2>
+        </div>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <span style="background:rgba(255,255,255,0.05); padding:0.4rem 0.8rem; border-radius:6px; font-family:var(--font-mono); font-size:0.85rem;" id="admin-username-badge">wisdom_admin</span>
+          <button class="btn btn-outline" id="admin-logout-btn" style="border-color:var(--token-pink); color:var(--token-pink); font-size:0.85rem;">Sign Out</button>
+        </div>
+      </div>
+
+      <!-- SYSTEM DIAGNOSTICS HUD -->
+      <div class="metrics-ribbon" style="margin-bottom:2.5rem;">
+        <div class="metric-item">
+          <span class="metric-num" style="color:var(--token-blue);" id="diag-uptime">--</span>
+          <span class="metric-label">Server Uptime</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num" style="color:var(--token-green);" id="diag-latency">--</span>
+          <span class="metric-label">Database Latency</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num" style="color:var(--token-purple);" id="diag-mem">--</span>
+          <span class="metric-label">Memory Footprint</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-num" style="color:var(--token-yellow);" id="diag-cpu">--</span>
+          <span class="metric-label">CPU Utilization</span>
+        </div>
+      </div>
+
+      <!-- ADMIN NAVIGATION TABS -->
+      <div class="filter-tabs" style="margin-bottom:2rem;">
+        <button class="filter-tab admin-nav-tab active" data-target="admin-pane-profile">Profile Picture Manager</button>
+        <button class="filter-tab admin-nav-tab" data-target="admin-pane-experience">Career Experience Editor</button>
+        <button class="filter-tab admin-nav-tab" data-target="admin-pane-projects">Live Project Manager</button>
+        <button class="filter-tab admin-nav-tab" data-target="admin-pane-inquiries">Inquiries Inbox</button>
+      </div>
+
+      <!-- TAB 1: PROFILE PICTURE MANAGER -->
+      <div class="admin-tab-pane" id="admin-pane-profile">
+        <div class="admin-profile-uploader">
+          <div>
+            <img src="/static/img/wisdom_avatar.jpg" alt="Profile Avatar" class="admin-preview-circle profile-avatar-img" id="admin-avatar-preview">
+          </div>
+          <div>
+            <h3 style="color:#ffffff; margin-bottom:0.4rem;">Profile Picture & Rounded Avatar</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:1.25rem;">
+              Upload any new profile photo. The engine will automatically crop, circularize, and update your portrait across all site navigation bars, hero headers, and about pages.
+            </p>
+            <form id="avatar-upload-form" style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+              <input type="file" id="avatar-file-input" accept="image/*" class="form-control" style="max-width:320px;" required>
+              <button type="submit" class="btn btn-primary" id="btn-save-avatar">Upload & Save Picture</button>
+            </form>
+            <div id="avatar-upload-status" style="margin-top:0.75rem; font-family:var(--font-mono); font-size:0.85rem; display:none;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: CAREER EXPERIENCE EDITOR -->
+      <div class="admin-tab-pane" id="admin-pane-experience" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+          <h3 style="color:#ffffff;">Career Milestones (Customer Ops, IT Support & SecOps)</h3>
+          <button class="btn btn-primary" id="admin-btn-add-exp" style="font-size:0.85rem;">+ Add Career Entry</button>
+        </div>
+        <div id="admin-experience-list"></div>
+      </div>
+
+      <!-- TAB 3: PROJECT MANAGER -->
+      <div class="admin-tab-pane" id="admin-pane-projects" style="display:none;">
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="color:#ffffff;">The 20 Interactive Projects</h3>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Modify descriptions, tech badges, GitHub repository links, and live availability.</p>
+        </div>
+        <div id="admin-projects-list"></div>
+      </div>
+
+      <!-- TAB 4: INQUIRIES INBOX -->
+      <div class="admin-tab-pane" id="admin-pane-inquiries" style="display:none;">
+        <div style="margin-bottom:1.5rem;">
+          <h3 style="color:#ffffff;">Contact Form Inquiries</h3>
+          <p style="color:var(--text-muted); font-size:0.88rem;">Triage recruitment messages, consulting requests, and support queries.</p>
+        </div>
+        <div id="admin-inquiries-list"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- GENERIC MODAL FOR EXPERIENCE & PROJECTS -->
+  <div class="modal-overlay" id="admin-generic-modal">
+    <div class="modal-container" style="max-width:650px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="admin-modal-title">Admin Editor</h3>
+        <button class="modal-close-btn" onclick="document.getElementById('admin-generic-modal').classList.remove('active')">&times;</button>
+      </div>
+      <div class="modal-body" id="admin-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="/static/js/admin.js"></script>
+  <script>
+    // Profile Picture Uploader Handler
+    document.getElementById('avatar-upload-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fileInput = document.getElementById('avatar-file-input');
+      const statusBox = document.getElementById('avatar-upload-status');
+      const btn = document.getElementById('btn-save-avatar');
+      
+      if (!fileInput.files || fileInput.files.length === 0) return;
+      
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      btn.disabled = true;
+      statusBox.style.display = 'block';
+      statusBox.innerHTML = '<span style="color:var(--token-blue);">Processing, cropping, and saving rounded avatar...</span>';
+      
+      try {
+        const res = await fetch('/api/admin/profile-picture', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await res.json();
+        if (res.ok) {
+          statusBox.innerHTML = '<span style="color:var(--token-green);">✔ Profile picture updated successfully!</span>';
+          document.querySelectorAll('.profile-avatar-img').forEach(img => {
+            img.src = data.profile_image_url;
+          });
+          document.getElementById('avatar-file-input').value = '';
+        } else {
+          statusBox.innerHTML = `<span style="color:var(--token-pink);">✖ Failed: ${data.detail || 'Upload error'}</span>`;
+        }
+      } catch (err) {
+        statusBox.innerHTML = '<span style="color:var(--token-pink);">✖ Network error during upload.</span>';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      AdminPortal.init();
+    });
+  </script>
+</body>
+</html>

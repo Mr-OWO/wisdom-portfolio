@@ -1,0 +1,22 @@
+# Independent Flagship Repositories
+llm-eval-bench/
+alignment-data-factory/
+rl-arena-platform/
+agentic-code-eval-sandbox/
+
+# Python & Environment
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.hypothesis/
+venv/
+.venv/
+env/
+
+# System & OS
+.DS_Store
+Thumbs.db
+
+# Build & Deploy
+cpanel_dist/

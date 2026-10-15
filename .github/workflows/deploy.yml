@@ -1,0 +1,29 @@
+name: Deploy to Production (wisdomowabor.online)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify Sandboxes & Test Benches
+        run: |
+          node scripts/verify_all_sandboxes.js
+
+      - name: Deploy to cPanel Production via FTP
+        run: |
+          python scripts/prepare_cpanel_dist.py
+        env:
+          CPANEL_FTP_HOST: ${{ secrets.CPANEL_FTP_HOST }}
+          CPANEL_FTP_USER: ${{ secrets.CPANEL_FTP_USER }}
+          CPANEL_FTP_PASS: ${{ secrets.CPANEL_FTP_PASS }}
