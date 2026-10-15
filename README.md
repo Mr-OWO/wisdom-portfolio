@@ -1,10 +1,12 @@
 # Wisdom Ogechi Owabor - Personal Portfolio & 24 Production Labs Matrix
 
 [![Live Production](https://img.shields.io/badge/Live-wisdomowabor.online-00f56b.svg)](https://wisdomowabor.online)
+[![Release](https://img.shields.io/github/v/release/Mr-OWO/wisdom-portfolio?color=brightgreen)](https://github.com/Mr-OWO/wisdom-portfolio/releases)
 [![CI/CD Deployment](https://github.com/Mr-OWO/wisdom-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/Mr-OWO/wisdom-portfolio/actions)
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178c6.svg)](https://www.typescriptlang.org/)
 [![Docker](https://img.shields.io/badge/Docker-Containers-2496ED.svg)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Production source code for **wisdomowabor.online**, the engineering portfolio and interactive labs matrix of **Wisdom Ogechi Owabor** — Full-Stack Software Engineer & Python AI Systems Specialist.
 
